@@ -43,7 +43,7 @@
 			<optional>true</optional>
 		</dependency>
 		<dependency>
-			<groupId>com.h2database</groupId>
+			<groupId>com.h2database</groupId><!-- Instalar POSTGRESQL-->
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
