@@ -34,7 +34,7 @@ public class PaymentService {
 	      .map(i -> {
 	        i.setRegistration(payment.getRegistration());
 	        i.setCard(payment.getCard());
-	        i.setCardnumber(payment.getCardnumber());
+	        i.setCardNumber(payment.getCardNumber());
 	        return paymentRepository.save(i);
 	      })
 	      .orElseGet(() -> {
