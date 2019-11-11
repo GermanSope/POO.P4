@@ -30,10 +30,10 @@ public class InviteService {
     
     
     public void deleteInvite(@PathVariable Long id) {
-		inviteRepository.deleteById(id);
+		  inviteRepository.deleteById(id);
     }
     
     public Invite findInviteById (Long id) {
-		return inviteRepository.findInviteById (id);
+      return inviteRepository.findInviteById(id);
 	}
 }
