@@ -8,5 +8,8 @@ import org.springframework.data.repository.query.Param;
 
 public interface EventRepository extends JpaRepository<Event, Long> {
     @Query("select e from Event e where e.id = :id")
-	public Event findEventById(@Param("id") long id);
+    public Event findEventById(@Param("id") long id);
+    
+    @Query("select e from Event e where e.owner.id = :id")
+    public Event findAllEventByOwnerID(@Param("id") Long id);
 }

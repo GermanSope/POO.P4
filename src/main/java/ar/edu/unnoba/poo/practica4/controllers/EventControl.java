@@ -37,5 +37,10 @@ public class EventControl {
 		event.setOwner(u);
 		eventService.addEvent(event);
 	}
+
+	@DeleteMapping("/events/{id}")
+	void deleteEvent(@PathVariable Long id) {
+		eventService.deleteEvent(id);
+	}
 	
 }
