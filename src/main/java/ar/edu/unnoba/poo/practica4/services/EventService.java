@@ -4,6 +4,10 @@ import java.util.List;
 
 import ar.edu.unnoba.poo.practica4.repositories.EventRepository;
 import ar.edu.unnoba.poo.practica4.repositories.UserRepository;
+<<<<<<< HEAD
+=======
+import ar.edu.unnoba.poo.practica4.entities.User;
+>>>>>>> b69a6527ca62bfd90a564a20f9a271fd5f9f2494
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
