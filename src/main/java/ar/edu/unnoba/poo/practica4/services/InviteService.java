@@ -34,6 +34,10 @@ public class InviteService {
     }
     
     public Invite findInviteById (Long id) {
+<<<<<<< HEAD
 		  return inviteRepository.findInviteById(id);
+=======
+		return inviteRepository.findInviteById (id);
+>>>>>>> 8dcbd2bc056290920e802872a06cf8dbd7b78d14
 	}
 }
