@@ -81,6 +81,11 @@ public class Event {
 		this.privateEvent = privateEvent;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", owner=" + owner + ", eventDate=" + eventDate + ", startRegistrations="
+				+ startRegistrations + ", endRegistrations=" + endRegistrations + ", capacity=" + capacity + ", cost="
+				+ cost + ", privateEvent=" + privateEvent + ", version=" + version + "]";
+	}
 	
 }
