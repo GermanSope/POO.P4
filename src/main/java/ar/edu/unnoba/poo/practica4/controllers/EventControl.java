@@ -30,6 +30,12 @@ public class EventControl {
 	public List<Event> findAllEventByOwnerID(@RequestParam(value="owner") Long userID){
 		return eventService.findAllEventByOwnerID(userID);
 	}
+
+	@GetMapping("/events/")
+	public List<Event> retrieveAllEvents(){
+		return eventService.retrieveAllEvents();
+	}
+	
 	
 	@PostMapping("/events")
 	public void addUser(@RequestBody Event event) {
