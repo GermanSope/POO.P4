@@ -1,5 +1,7 @@
 package ar.edu.unnoba.poo.practica4.repositories;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import ar.edu.unnoba.poo.practica4.entities.Event;
 import ar.edu.unnoba.poo.practica4.entities.User;
@@ -12,5 +14,5 @@ public interface EventRepository extends JpaRepository<Event, Long> {
     public Event findEventById(@Param("id") long id);
     
     @Query("select e from Event e where e.owner = :owner")
-    public Event findAllEventByOwnerID(@Param("owner") User owner);
+    public List<Event> findAllEventByOwnerID(@Param("owner") User owner);
 }
