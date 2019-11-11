@@ -14,7 +14,7 @@ import ar.edu.unnoba.poo.practica4.entities.Invite;
 @Service
 public class InviteService {
     @Autowired
-    private InviteRepository InviteRepository;
+    private InviteRepository inviteRepository;
     
     public List<Invite> retrieveInvite() {
 		return inviteRepository.findAll();
@@ -25,7 +25,7 @@ public class InviteService {
     }
     
     public Invite getInvite(Long id) {
-	    return InviteRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+	    return inviteRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
     }
     
     
@@ -34,6 +34,6 @@ public class InviteService {
     }
     
     public Invite findInviteById (Long id) {
-		return inviteRepository.findInviteById (Id);
+		return inviteRepository.findInviteById (id);
 	}
 }

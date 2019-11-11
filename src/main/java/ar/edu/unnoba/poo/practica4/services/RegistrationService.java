@@ -2,7 +2,7 @@ package ar.edu.unnoba.poo.practica4.services;
 
 import java.util.List;
 
-import ar.edu.unnoba.poo.practica4.repositories.registrationRepository;
+import ar.edu.unnoba.poo.practica4.repositories.RegistrationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class RegistrationService {
 	      .map(r -> {
 	        r.setUser(registration.getUser());
 	        r.setEvent(registration.getEvent());
-	        r.setDate(registration.getDate());
+	        r.setCreatedAt(registration.getCreatedAt());
 	        return registrationRepository.save(r);
 	      })
 	      .orElseGet(() -> {
