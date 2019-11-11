@@ -16,8 +16,20 @@ public class InviteService {
     @Autowired
     private InviteRepository inviteRepository;
     
-    public List<Invite> retrieveInvite() {
+    public List<Invite> retrieveAllInvites() {
 		return inviteRepository.findAll();
+    }
+
+    public Invite replaceInvite(Invite invite, Long id){
+      return inviteRepository.findById(id)
+      .map(i -> {
+        i.setEvent(invite.getEvent());
+        i.setUser(invite.getUser());
+        return inviteRepository.save(i);
+      })
+      .orElseGet(() -> {
+        return inviteRepository.save(invite);
+      });
     }
     
     public void addInvite(Invite invite) {

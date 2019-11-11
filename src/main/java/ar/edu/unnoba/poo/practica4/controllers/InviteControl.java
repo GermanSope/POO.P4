@@ -42,6 +42,6 @@ public class InviteControl {
 
 	  @DeleteMapping("/invites/{id}")
 	  void deleteInvite(@PathVariable Long id) {
-		  inviteService.deleteInviter(id);
+		  inviteService.deleteInvite(id);
 	  }
 }
