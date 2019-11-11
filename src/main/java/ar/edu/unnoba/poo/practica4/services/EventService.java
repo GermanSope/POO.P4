@@ -3,7 +3,7 @@ package ar.edu.unnoba.poo.practica4.services;
 import java.util.List;
 
 import ar.edu.unnoba.poo.practica4.repositories.EventRepository;
-//import ar.edu.unnoba.poo.practica4.repositories.UserRepository;
+import ar.edu.unnoba.poo.practica4.repositories.UserRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +18,7 @@ public class EventService {
 
     @Autowired
     private EventRepository eventRepository;
+    private UserService userService;
     
     public List<Event> retrieveAllEvents() {
 		  return eventRepository.findAll();
@@ -53,5 +54,9 @@ public class EventService {
      
     public Event findEventById(long id) {
       return eventRepository.findEventById(id);
+    }
+
+    public List<Event> findAllEventByOwnerID(Long id){
+      return eventRepository.findAllEventByOwnerID(userService.getUser(id));
     }
 }
