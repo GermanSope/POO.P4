@@ -15,18 +15,18 @@ import ar.edu.unnoba.poo.practica4.entities.Event;
 public class EventService {
 
     @Autowired
-    private EventRepository EventRepository;
+    private EventRepository eventRepository;
     
     public List<Event> retrieveAllEvents() {
-		  return EventRepository.findAll();
+		  return eventRepository.findAll();
     }
     
     public void addEvent(Event event) {
-	    EventRepository.save(event);
+	    eventRepository.save(event);
     }
 
    public Event getEvent(Long id) {
-    return EventRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
+    return eventRepository.findById(id).orElseThrow(() -> new NoSuchElementException());
    }
 
    public Event replaceEvent(Event event, Long id) {
