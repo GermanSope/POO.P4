@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -17,6 +18,7 @@ import ar.edu.unnoba.poo.practica4.entities.User;
 
 import org.springframework.web.bind.annotation.RequestParam;
 
+@RequestMapping("events")
 @RestController
 public class EventControl {
 
@@ -26,25 +28,25 @@ public class EventControl {
 	@Autowired
 	private UserService userService;
 	
-	@GetMapping("/events/")
-	public List<Event> findAllEventByOwnerID(@RequestParam(value="owner") Long userID){
+	@GetMapping(path = "{id}")
+	public List<Event> findAllEventByOwnerID(@RequestParam(value="owner") @PathVariable Long userID){
 		return eventService.findAllEventByOwnerID(userID);
 	}
 
-	@GetMapping("/events/")
+	@GetMapping
 	public List<Event> retrieveAllEvents(){
 		return eventService.retrieveAllEvents();
 	}
 	
 	
-	@PostMapping("/events")
+	@PostMapping
 	public void addUser(@RequestBody Event event) {
 		User u = userService.getUser(event.getOwner().getId());
 		event.setOwner(u);
 		eventService.addEvent(event);
 	}
 
-	@DeleteMapping("/events/{id}")
+	@DeleteMapping(path = "{id}")
 	void deleteEvent(@PathVariable Long id) {
 		eventService.deleteEvent(id);
 	}
