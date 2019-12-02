@@ -28,6 +28,11 @@ public class EventControl {
 	@Autowired
 	private UserService userService;
 	
+	@GetMapping("/")
+	public String index() {
+		return "events";
+	}
+	
 	@GetMapping(path = "{id}")
 	public List<Event> findAllEventByOwnerID(@RequestParam(value="owner") @PathVariable Long userID){
 		return eventService.findAllEventByOwnerID(userID);
