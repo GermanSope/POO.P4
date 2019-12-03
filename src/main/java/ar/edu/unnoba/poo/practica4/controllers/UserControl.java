@@ -2,7 +2,13 @@ package ar.edu.unnoba.poo.practica4.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,12 +19,16 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import ar.edu.unnoba.poo.practica4.services.UserService;
 
 import ar.edu.unnoba.poo.practica4.entities.User;
+import ar.edu.unnoba.poo.practica4.repositories.UserRepository;
 
-@RestController
+@Controller
 public class UserControl {
 
 	@Autowired
 	private UserService userService;
+
+	@Autowired
+	private UserRepository userRepository;
 	
 	@GetMapping("/users")
 	public List<User> retrieveAllUsers() {
@@ -29,6 +39,23 @@ public class UserControl {
 	public void addUser(@RequestBody User user) {
 		userService.addUser(user);
 	}
+
+	@GetMapping("/users/adduser")
+	public String adduser(User user){
+		return "adduser";
+	}
+
+	@PostMapping("/users/adduser")
+    public String addUser(@Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "adduser";
+        }
+        user.setRole("USER");
+        user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+        userRepository.save(user);
+        model.addAttribute("users", userRepository.findAll());
+        return "home";
+    }
 	
 	@GetMapping("/users/{id}")
 	public User getUser(@PathVariable Long id) {
@@ -40,8 +67,8 @@ public class UserControl {
 	    return userService.replaceUser(user, id);
 	}
 
-	  @DeleteMapping("/users/{id}")
-	  void deleteUser(@PathVariable Long id) {
-		  userService.deleteUser(id);
+	@DeleteMapping("/users/{id}")
+	 void deleteUser(@PathVariable Long id) {
+	  userService.deleteUser(id);
 	  }
 }
